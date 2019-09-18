@@ -2,3 +2,9 @@ src
 example
 .babelrc
 webpack.config.js
+.DS_Store
+.idea/misc.xml
+.idea/modules.xml
+.idea/routers-view.iml
+.idea/vcs.xml
+.idea/workspace.xml

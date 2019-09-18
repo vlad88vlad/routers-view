@@ -1,51 +1,102 @@
 import React from 'react';
 import { createBrowserHistory } from 'history';
+import {
+    Redirect,
+    Route,
+    Router,
+    Switch,
+    HashRouter,
+    Link,
+    BrowserRouter
+} from 'react-router-dom';
 
-import { Redirect, Route, Router, Switch, HashRouter } from 'react-router-dom';
-
-export const history = createBrowserHistory();
+const history = createBrowserHistory();
 
 const renderComponent = (route, props, extraProps) => (
     <route.component {...props} {...extraProps} route={route} />
 
 );
 
-export const next = (path) => (
+const RouterType = ({ type, children, ...routerProps }) => {
+    if (type === "hash") {
+        return (
+            <HashRouter {...routerProps} history={history}>
+                {children}
+            </HashRouter>
+        );
+    }
+    return (
+        <Router {...routerProps} history={history}>
+            {children}
+        </Router>
+    );
+};
+const RouterWrapper = ({ routerType = '', children, ...props }) => {
+
+    return (
+        <BrowserRouter>
+            <RouterType {...props} type={routerType}>
+                {children}
+            </RouterType>
+        </BrowserRouter>
+
+    );
+};
+
+const next = (path) => (
     path || true
 );
 
-const RenderRoutes = ({ routers }, { extraProps = {} }) => (routers ? (
-    <HashRouter history={history}>
+const RenderRoutes = ({ routers }, { extraProps = {} }) => {
+    if (!routers) {
+        console.error('routers is required');
+        return null;
+    }
+    if (!Array.isArray(routers)) {
+        console.error('routers should be array');
+        return null;
+    }
+    if (routers.length === 0) {
+        console.warn('routers length = 0');
+    }
 
-        <Switch>
+    if (routers && Array.isArray(routers)) {
+        return (
 
-            {routers && routers.map((route, i) => (
-                <Route
-                    key={route.key || i}
-                    path={route.path}
-                    exact={route.exact}
-                    strict={route.strict}
-                    render={(props) => {
-                        const { before } = route;
+            <Switch>
 
-                        if (route.hasOwnProperty('before')
-                            && typeof before === 'function') {
-                            const result = before();
+                {routers.map((route, i) => (
+                    <Route
+                        key={route.key || i}
+                        path={route.path}
+                        exact={route.exact || false}
+                        strict={route.strict || false}
+                        render={(props) => {
+                            const { before } = route;
 
-                            if (typeof result === 'string') {
-                                return <Redirect to={result} />;
+                            if (route.hasOwnProperty('before')
+                                && typeof before === 'function') {
+                                const result = before();
+
+                                if (typeof result === 'string') {
+                                    return <Redirect to={result} />;
+                                }
+
+                                return renderComponent(route, props, extraProps);
                             }
 
                             return renderComponent(route, props, extraProps);
-                        }
+                        }}
+                    />
+                ))}
+            </Switch>
 
-                        return renderComponent(route, props, extraProps);
-                    }}
-                />
-            ))}
-        </Switch>
-    </HashRouter>
+        );
+    }
+    return null;
+};
 
-) : null);
+
+export { Link, history, RouterWrapper, next };
 
 export default RenderRoutes;

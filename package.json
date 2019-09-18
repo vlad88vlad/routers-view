@@ -1,7 +1,8 @@
 {
-  "name": "react-router-view",
+  "name": "router-view-dom",
   "version": "0.0.1",
   "description": "react router view",
+  "license": "MIT",
   "main": "build/index.js",
   "peerDependencies": {
     "react": "^15.5.4"
@@ -18,8 +19,8 @@
     "build": "webpack"
   },
   "author": {
-    "name": "Your name",
-    "email": "your email"
+    "name": "Vlad Voloshchuk",
+    "email": "vlad88vlad@gmail.com"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
