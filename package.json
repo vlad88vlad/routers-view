@@ -1,12 +1,31 @@
 {
   "name": "router-view-dom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react router view",
   "license": "MIT",
   "main": "build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vlad88vlad/routers-view"
+  },
   "peerDependencies": {
     "react": "^15.5.4"
   },
+  "keywords": [
+    "router-view-dom",
+    "router",
+    "router-react",
+    "react-router-view",
+    "react-view-router",
+    "react-view",
+    "router view dom",
+    "router react",
+    "react router view",
+    "react view router",
+    "react view",
+    "router json",
+    "router with auth"
+  ],
   "dependencies": {
     "history": "^4.9.0",
     "react": "^15.5.4",

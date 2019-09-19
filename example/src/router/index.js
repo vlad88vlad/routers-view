@@ -1,3 +1,5 @@
+import React from 'react';
+
 import FirstPage from '../pages/FirstPage';
 import SecondPage from '../pages/SecondPage';
 import SubPage from '../pages/SubPage';
@@ -22,6 +24,12 @@ const routers = [
                 component: SubPage,
             }
         ],
+
+    },
+    {
+        key: 'not-found',
+        path: '*',
+        component: () => (<h1>not found</h1>),
 
     },
 ];
