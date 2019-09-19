@@ -1,6 +1,6 @@
 {
   "name": "router-view-dom",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react router view",
   "license": "MIT",
   "main": "build/index.js",
@@ -12,19 +12,15 @@
     "react": "^15.5.4"
   },
   "keywords": [
-    "router-view-dom",
     "router",
+    "react",
+    "router-view-dom",
     "router-react",
     "react-router-view",
     "react-view-router",
     "react-view",
-    "router view dom",
-    "router react",
-    "react router view",
-    "react view router",
-    "react view",
-    "router json",
-    "router with auth"
+    "react-dom",
+    "react-vue-router"
   ],
   "dependencies": {
     "history": "^4.9.0",
